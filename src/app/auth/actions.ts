@@ -110,3 +110,50 @@ export async function signout() {
   await supabase.auth.signOut()
   redirect('/login')
 }
+
+export async function changePasswordAction(formData: FormData) {
+  const currentPassword = formData.get('currentPassword') as string
+  const newPassword = formData.get('newPassword') as string
+  const confirmPassword = formData.get('confirmPassword') as string
+
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    return { error: 'Semua kolom wajib diisi.' }
+  }
+
+  if (newPassword !== confirmPassword) {
+    return { error: 'Password baru dan konfirmasi password tidak cocok.' }
+  }
+
+  if (newPassword.length < 6) {
+    return { error: 'Password baru minimal harus 6 karakter.' }
+  }
+
+  const supabase = createClient()
+
+  // 1. Get current user
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError || !user) {
+    return { error: 'Sesi tidak valid atau telah berakhir. Silakan login kembali.' }
+  }
+
+  // 2. Re-authenticate to verify current password
+  const { error: signInError } = await supabase.auth.signInWithPassword({
+    email: user.email!,
+    password: currentPassword,
+  })
+
+  if (signInError) {
+    return { error: 'Password saat ini salah.' }
+  }
+
+  // 3. Update password
+  const { error: updateError } = await supabase.auth.updateUser({
+    password: newPassword,
+  })
+
+  if (updateError) {
+    return { error: `Gagal memperbarui password: ${updateError.message}` }
+  }
+
+  return { success: true, message: 'Password berhasil diperbarui!' }
+}

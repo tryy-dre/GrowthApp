@@ -3,8 +3,9 @@ import { redirect } from 'next/navigation'
 import { SupabaseClient } from '@supabase/supabase-js'
 import Link from 'next/link'
 import AdminLayoutShell from './components/AdminLayoutShell'
-import RoleSelect from './components/RoleSelect'
+import CreateUserForm from './components/CreateUserForm'
 import DeleteButton from './components/DeleteButton'
+import ChangePasswordForm from '@/app/auth/components/ChangePasswordForm'
 import { 
   deleteUser, 
   deleteTestimony, 
@@ -12,7 +13,9 @@ import {
   deletePrayerRequest,
   deleteAllTestimonies,
   deleteAllQuestions,
-  deleteAllPrayerRequests
+  deleteAllPrayerRequests,
+  deleteActivityLog,
+  deleteAllActivityLogs
 } from './adminActions'
 import { 
   Users as UsersIcon, 
@@ -168,6 +171,12 @@ export default async function AdminPage({ searchParams }: PageProps) {
           currentP={currentP} 
           selectedId={searchParams.id} 
         />
+      )}
+
+      {activePage === 'password' && (
+        <div className="animate-fadeIn max-w-4xl mx-auto py-4">
+          <ChangePasswordForm />
+        </div>
       )}
     </AdminLayoutShell>
   )
@@ -362,81 +371,87 @@ async function UsersView({
   const users = (usersData || []) as Profile[]
 
   return (
-    <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-      <div>
-        <div className="flex justify-between items-center pb-4 border-b border-slate-100 mb-6">
-          <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
-            <UsersIcon className="w-4.5 h-4.5 text-indigo-600" />
-            <span>Daftar Pengguna</span>
-          </h3>
-          <span className="bg-indigo-50 border border-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-full text-xs font-bold">
-            {totalItems} total
-          </span>
-        </div>
+    <div className="space-y-6">
+      <CreateUserForm />
 
-        <div className="overflow-x-auto -mx-6">
-          <table className="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr className="border-b border-slate-200 text-slate-500 font-bold bg-slate-50/50">
-                <th className="py-3 px-6 w-16">#</th>
-                <th className="py-3 px-6">Nickname</th>
-                <th className="py-3 px-6 w-44">Role</th>
-                <th className="py-3 px-6 w-44">Bergabung</th>
-                <th className="py-3 px-6 w-24 text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {users.length > 0 ? (
-                users.map((u, idx: number) => (
-                  <tr key={u.id} className="hover:bg-slate-50/40 transition">
-                    <td className="py-3.5 px-6 text-slate-400 font-medium">{offset + idx + 1}</td>
-                    <td className="py-3.5 px-6 font-bold text-slate-800">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs">
-                          {u.nickname.slice(0, 2).toUpperCase()}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div className="flex justify-between items-center pb-4 border-b border-slate-100 mb-6">
+            <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <UsersIcon className="w-4.5 h-4.5 text-indigo-600" />
+              <span>Daftar Pengguna</span>
+            </h3>
+            <span className="bg-indigo-50 border border-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-full text-xs font-bold">
+              {totalItems} total
+            </span>
+          </div>
+
+          <div className="overflow-x-auto -mx-6">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-slate-200 text-slate-500 font-bold bg-slate-50/50">
+                  <th className="py-3 px-6 w-16">#</th>
+                  <th className="py-3 px-6">Nickname</th>
+                  <th className="py-3 px-6 w-44">Role</th>
+                  <th className="py-3 px-6 w-44">Bergabung</th>
+                  <th className="py-3 px-6 w-24 text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {users.length > 0 ? (
+                  users.map((u, idx: number) => (
+                    <tr key={u.id} className="hover:bg-slate-50/40 transition">
+                      <td className="py-3.5 px-6 text-slate-400 font-medium">{offset + idx + 1}</td>
+                      <td className="py-3.5 px-6 font-bold text-slate-800">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs">
+                            {u.nickname.slice(0, 2).toUpperCase()}
+                          </div>
+                          <span>{u.nickname}</span>
+                          {u.id === currentUserId && (
+                            <span className="bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold text-[9px] px-1.5 py-0.5 rounded">Kamu</span>
+                          )}
                         </div>
-                        <span>{u.nickname}</span>
-                        {u.id === currentUserId && (
-                          <span className="bg-indigo-50 border border-indigo-100 text-indigo-600 font-bold text-[9px] px-1.5 py-0.5 rounded">Kamu</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-6">
-                      <RoleSelect 
-                        userId={u.id} 
-                        initialRole={u.role} 
-                        disabled={u.id === currentUserId}
-                      />
-                    </td>
-                    <td className="py-3.5 px-6 text-slate-500 font-medium">
-                      {new Date(u.created_at).toLocaleDateString()}
-                    </td>
-                    <td className="py-3.5 px-6 text-right">
-                      <DeleteButton
-                        itemId={u.id}
-                        itemName={`user ${u.nickname}`}
-                        disabled={u.id === currentUserId}
-                        onConfirm={async () => {
-                          'use server'
-                          return deleteUser(u.id)
-                        }}
-                      />
+                      </td>
+                      <td className="py-3.5 px-6">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${
+                          u.role === 'admin' 
+                            ? 'bg-indigo-50 text-indigo-700 border-indigo-100' 
+                            : 'bg-slate-100 text-slate-750 border-slate-200'
+                        }`}>
+                          {u.role === 'admin' ? 'Admin' : 'User'}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-6 text-slate-500 font-medium">
+                        {new Date(u.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="py-3.5 px-6 text-right">
+                        <DeleteButton
+                          itemId={u.id}
+                          itemName={`user ${u.nickname}`}
+                          disabled={u.id === currentUserId}
+                          onConfirm={async () => {
+                            'use server'
+                            return deleteUser(u.id)
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={5} className="py-12 text-center text-slate-400 font-medium">
+                      Tidak ada data pengguna.
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5} className="py-12 text-center text-slate-400 font-medium">
-                    Tidak ada data pengguna.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <Pagination totalItems={totalItems} perPage={perPage} currentPage={currentP} pageKey="users" />
+        <Pagination totalItems={totalItems} perPage={perPage} currentPage={currentP} pageKey="users" />
+      </div>
     </div>
   )
 }
@@ -472,9 +487,20 @@ async function LogsView({
             <Scroll className="w-4.5 h-4.5 text-amber-600" />
             <span>Log Aktivitas</span>
           </h3>
-          <span className="bg-indigo-50 border border-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-full text-xs font-bold">
-            {totalItems} total
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="bg-indigo-50 border border-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-full text-xs font-bold">
+              {totalItems} total
+            </span>
+            {totalItems > 0 && (
+              <DeleteButton
+                itemName="seluruh data log aktivitas"
+                onConfirm={async () => {
+                  'use server'
+                  return deleteAllActivityLogs()
+                }}
+              />
+            )}
+          </div>
         </div>
 
         <div className="overflow-x-auto -mx-6">
@@ -486,6 +512,7 @@ async function LogsView({
                 <th className="py-3 px-6">Aksi</th>
                 <th className="py-3 px-6 w-44">IP Address</th>
                 <th className="py-3 px-6 w-44">Waktu</th>
+                <th className="py-3 px-6 w-24 text-right">Hapus</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -507,11 +534,21 @@ async function LogsView({
                     <td className="py-3.5 px-6 text-slate-500 font-medium">
                       {new Date(log.created_at).toLocaleString()}
                     </td>
+                    <td className="py-3.5 px-6 text-right">
+                      <DeleteButton
+                        itemId={log.id}
+                        itemName="log ini"
+                        onConfirm={async () => {
+                          'use server'
+                          return deleteActivityLog(log.id)
+                        }}
+                      />
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={5} className="py-12 text-center text-slate-400 font-medium">
+                  <td colSpan={6} className="py-12 text-center text-slate-400 font-medium">
                     Belum ada log aktivitas.
                   </td>
                 </tr>

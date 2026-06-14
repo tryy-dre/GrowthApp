@@ -12,7 +12,8 @@ import {
   Heart, 
   LogOut, 
   Shield,
-  X
+  X,
+  Key
 } from 'lucide-react'
 import { Righteous } from 'next/font/google'
 
@@ -43,6 +44,7 @@ export default function AdminLayoutShell({
     { key: 'testimonies', label: 'Semua Testimoni', shortLabel: 'Testimoni', icon: Star },
     { key: 'questions', label: 'Semua Pertanyaan', shortLabel: 'Pertanyaan', icon: HelpCircle },
     { key: 'prayers', label: 'Permohonan Doa', shortLabel: 'Doa', icon: Heart },
+    { key: 'password', label: 'Ubah Password', shortLabel: 'Password', icon: Key },
   ]
 
   // Sourced mobile tab bar: Max 4 items (testimoni, doa, pertanyaan, dashboard)

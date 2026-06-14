@@ -7,7 +7,8 @@ import {
   Star, 
   HelpCircle, 
   Heart, 
-  LogOut 
+  LogOut,
+  Key
 } from 'lucide-react'
 import { Righteous } from 'next/font/google'
 
@@ -34,6 +35,7 @@ export default function UserLayoutShell({
     { key: 'testimony', label: 'Kebaikan Tuhan', icon: Star },
     { key: 'questions', label: 'Pertanyaan', icon: HelpCircle },
     { key: 'prayer', label: 'Permohonan Doa', icon: Heart },
+    { key: 'password', label: 'Ubah Password', icon: Key },
   ]
 
   const activeTitle = navItems.find(item => item.key === activePage)?.label || 'Dashboard'
@@ -106,7 +108,7 @@ export default function UserLayoutShell({
 
       {/* MOBILE STICKY BOTTOM TAB BAR */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg flex justify-around py-2 px-1">
-        {navItems.map((item) => {
+        {navItems.filter((item) => item.key !== 'password').map((item) => {
           const Icon = item.icon
           const isActive = activePage === item.key
           return (
@@ -147,6 +149,14 @@ export default function UserLayoutShell({
             >
               {nickname.slice(0, 2).toUpperCase()}
             </div>
+            {/* Mobile Change Password Link */}
+            <Link 
+              href="?page=password" 
+              className="md:hidden p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition"
+              title="Ubah Password"
+            >
+              <Key className="w-4.5 h-4.5" />
+            </Link>
             {/* Mobile Logout Button */}
             <form action={signout} className="md:hidden flex items-center">
               <button 

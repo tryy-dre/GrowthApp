@@ -7,6 +7,7 @@ import TestimonyForm from './components/TestimonyForm'
 import QuestionForm from './components/QuestionForm'
 import PrayerForm from './components/PrayerForm'
 import DeleteButton from './components/DeleteButton'
+import ChangePasswordForm from '@/app/auth/components/ChangePasswordForm'
 import { deleteTestimony, deleteQuestion, deletePrayerRequest } from './userActions'
 import { 
   Sun, 
@@ -493,6 +494,13 @@ export default async function UserPage({
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* PASSWORD PAGE */}
+      {activePage === 'password' && (
+        <div className="animate-fadeIn max-w-4xl mx-auto py-4">
+          <ChangePasswordForm />
         </div>
       )}
     </UserLayoutShell>
