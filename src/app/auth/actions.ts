@@ -14,9 +14,10 @@ export async function login(formData: FormData) {
   const supabase = createClient()
   let errorMsg = ''
   let success = false
+  let userRole = 'user'
 
   try {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     })
@@ -25,6 +26,16 @@ export async function login(formData: FormData) {
       errorMsg = error.message
     } else {
       success = true
+      if (data.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single()
+        if (profile) {
+          userRole = profile.role
+        }
+      }
     }
   } catch {
     errorMsg = 'An unexpected error occurred. Please try again.'
@@ -35,7 +46,11 @@ export async function login(formData: FormData) {
   }
 
   if (success) {
-    redirect('/')
+    if (userRole === 'admin') {
+      redirect('/admin')
+    } else {
+      redirect('/')
+    }
   }
 }
 
