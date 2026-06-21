@@ -34,19 +34,19 @@ const stories = [
   },
   {
     id: 2,
-    title: "Dompet Terakhir dan Doa yang Tidak Terdengar",
+    title: "Detik yang Seharusnya Menjadi Akhir",
     author: "Kesaksian Nyata",
     cliffhangerIndex: 2,
     content: [
-      "Tahun itu menjadi tahun terberat dalam hidup saya. Setelah delapan tahun bekerja di perusahaan yang sama, saya harus menerima kenyataan bahwa perusahaan melakukan pengurangan karyawan. Nama saya termasuk dalam daftar yang diberhentikan.",
-      "Awalnya saya berpikir semuanya akan baik-baik saja. Saya masih memiliki sedikit tabungan. Namun bulan demi bulan berlalu dan pekerjaan baru tidak kunjung datang. Tagihan listrik menumpuk, cicilan rumah mulai jatuh tempo, dan anak saya membutuhkan biaya sekolah.",
-      "Suatu sore saya membuka dompet dan hanya menemukan uang yang cukup untuk membeli makan satu kali. Saya duduk di dalam mobil sambil memegang uang itu. Rasanya seperti seluruh beban dunia berada di pundak saya. Saya berdoa, \"Tuhan, saya tidak tahu harus bagaimana lagi.\"",
-      "Namun berbeda dari biasanya, saya tidak merasakan apa-apa. Tidak ada damai sejahtera. Tidak ada jawaban. Hanya keheningan.",
-      "Malam itu saya pulang dengan perasaan hancur. Ketika tiba di rumah, saya melihat sebuah amplop putih berada di depan pintu. Tidak ada nama pengirim. Saya membukanya perlahan...",
-      "Di dalamnya terdapat sejumlah uang yang jumlahnya cukup untuk memenuhi kebutuhan keluarga kami selama beberapa minggu. Namun yang membuat saya menangis bukan uang itu. Ada secarik kertas bertuliskan: \"Tuhan belum selesai menolongmu. Tetaplah percaya.\"",
-      "Saya dan istri saling berpandangan. Kami tidak tahu siapa yang mengirimkannya. Beberapa hari kemudian saya mendapat panggilan wawancara kerja dari perusahaan yang sebelumnya bahkan tidak pernah saya lamar. Ternyata seorang teman lama merekomendasikan nama saya kepada perusahaan tersebut tanpa sepengetahuan saya. Sebulan kemudian saya diterima bekerja.",
-      "Beberapa tahun setelah kejadian itu, saya akhirnya mengetahui siapa yang mengirim amplop tersebut. Ternyata seorang anggota gereja yang tidak terlalu dekat dengan saya. Ia bercerita bahwa saat berdoa, ia merasa tergerak untuk membantu seseorang yang sedang mengalami kesulitan, bahkan ia tidak tahu kondisi saya secara detail.",
-      "Hari itu saya belajar bahwa Tuhan sering menjawab doa melalui tangan orang lain. Dan meskipun terkadang doa terasa tidak didengar, bukan berarti Tuhan sedang diam. Mungkin Ia sedang menyiapkan jawaban yang belum bisa kita lihat."
+      "Saya masih berusia 21 tahun ketika kejadian itu terjadi. Saat itu hidup saya terasa sangat menyenangkan. Saya baru saja diterima bekerja di sebuah perusahaan impian dan memiliki banyak rencana untuk masa depan. Saya merasa masih memiliki waktu yang panjang untuk mengejar semua mimpi saya.",
+      "Malam itu saya pulang setelah berkumpul dengan beberapa teman. Jalanan cukup sepi dan cuaca sedikit gerimis. Saya mengendarai motor seperti biasa sambil mendengarkan musik melalui earphone. Tidak ada firasat apa pun. Tidak ada tanda-tanda bahwa hidup saya akan berubah hanya dalam hitungan detik.",
+      "Ketika melintasi sebuah persimpangan, tiba-tiba sebuah mobil melaju dengan kecepatan tinggi dari arah samping. Saya tidak sempat mengerem. Benturan keras terjadi. Yang saya ingat hanyalah tubuh saya terlempar beberapa meter sebelum semuanya menjadi gelap.",
+      "Saat membuka mata, saya sudah berada di rumah sakit. Tubuh saya dipenuhi luka dan hampir seluruh badan terasa sakit. Keluarga saya berada di samping tempat tidur sambil menangis. Belakangan saya mengetahui bahwa banyak orang yang menyaksikan kecelakaan itu mengira saya tidak akan selamat. Bahkan salah satu petugas yang datang pertama kali ke lokasi mengatakan bahwa kondisi motor saya jauh lebih parah daripada yang pernah ia lihat pada kecelakaan serupa.",
+      "Dokter menjelaskan bahwa saya mengalami beberapa patah tulang dan cedera serius. Namun ada satu kalimat yang membuat saya terdiam. \"Secara medis, kami juga heran mengapa cedera Anda tidak lebih parah dari ini.\" Masa pemulihan berjalan sangat berat. Saya yang biasanya aktif kini harus terbaring berbulan-bulan. Saya mulai mempertanyakan banyak hal kepada Tuhan. \"Mengapa ini harus terjadi? Mengapa saya yang mengalaminya?\"",
+      "Suatu malam, ketika sedang merasa putus asa, ibu saya datang membawa sebuah Alkitab yang sudah lama saya abaikan. Ia tidak banyak berbicara. Ia hanya berkata, \"Tuhan masih memberimu kesempatan hidup karena Dia belum selesai dengan rencana-Nya.\"",
+      "Kalimat itu terus terngiang di kepala saya. Selama masa pemulihan, saya mulai belajar berdoa kembali. Saya mulai membaca firman Tuhan yang selama ini jarang saya sentuh. Sedikit demi sedikit hati saya berubah. Enam bulan kemudian saya akhirnya bisa berjalan normal kembali.",
+      "Setahun setelah kecelakaan itu, saya bertemu dengan seseorang yang pernah menolong saya malam kejadian. Ia berkata sesuatu yang tidak pernah saya lupakan. \"Saat kami tiba di lokasi, kami pikir kamu sudah tidak tertolong. Tapi entah bagaimana, kamu masih bernapas dan sadar beberapa saat sebelum ambulans datang.\"",
+      "Saat mendengar itu, saya merinding. Hari itu saya menyadari bahwa hidup adalah anugerah yang tidak bisa dianggap biasa. Kecelakaan yang hampir merenggut nyawa saya justru menjadi titik balik yang membawa saya lebih dekat kepada Tuhan. Sekarang, setiap kali melihat bekas luka di tubuh saya, saya tidak lagi mengingat rasa sakitnya. Saya mengingat kebaikan Tuhan. Karena pada malam yang seharusnya menjadi akhir dari hidup saya, Tuhan memberi saya kesempatan kedua untuk menjalani hidup yang baru."
     ]
   },
   {
