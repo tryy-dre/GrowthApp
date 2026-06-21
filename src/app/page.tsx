@@ -141,6 +141,7 @@ export default async function IndexPage() {
       </header>
 
       {/* Main Content - 3 Story Cards Grid */}
+      {role !== 'admin' && (
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 -mt-20 relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {stories.map((story) => (
@@ -215,6 +216,7 @@ export default async function IndexPage() {
           </Link>
         </div>
       </main>
+      )}
 
       {/* Footer */}
       <footer className="w-full bg-white border-t border-slate-200 py-10 mt-12">
